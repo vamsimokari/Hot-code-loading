@@ -1,0 +1,19 @@
+-module(test2).
+-compile(export_all).
+start(Node)->
+        spawn(Node,test2,loop,[]).
+
+loop()->
+        receive
+                %%switch->
+                        test2:loop();
+                %%hii->
+                        erlang:display([self(),hello]),
+                        loop();
+                hello->
+                        erlang:display([self(),hiii]),
+                        loop();
+                Anything->  
+                        erlang:display([self(),Anything]),
+                loop()
+        end.
