@@ -1,6 +1,6 @@
 # Hot-code-loading
 
-First open 3 erlang terminals with same cookie using 
+First open 3 erlang terminals using same cookie  
 
 vamsi@local:~$ erl -sname vamsi1
 Erlang/OTP 17 [erts-6.3] [source] [64-bit] [smp:2:2] [async-threads:10] [hipe] [kernel-poll:false]
