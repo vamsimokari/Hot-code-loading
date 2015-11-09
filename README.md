@@ -48,12 +48,57 @@ pong
 
 (vamsi1@local)8> Pid1=test2:start(vamsi2@local).
 <9900.48.0>
+
+about start function in test2.erl moduel %%start function takes an input as node() Start function will call the builtin function %%spawn%%% this function will creats a new process, spawn(Node,test1,loop,[]) here Node is unbound variable whatever we pass the node name process to be created at that node Here from vamsi1 node we will passa another node name as a argument to the start function
 (vamsi1@local)9> Pid1! hii.
 hii
 
 (vamsi2@local)4> [<0.48.0>,hii]
 
 
+Now modify the code in test 2.erl remove the comments(%%) in  the existing module to add extra clauses to the module
+
+I am adding one more clause to receive loop here switch is an atom what i make here is tail recursive to the 
+       loop function but if you see that i specified module name as well ,what this actually means if i make a call to function
+        sepecified nodule name as well ,I tell erlang to use latest version of the module ,here we force to specify use the 
+        latest beam
+
+and compile it in node3 and load the module in vams2@local.
+
+(vamsi2@local)4> l(test2).
+{module,test2}
+
+Ater loading also still you are getting hii message 
+
+(vamsi2@local)5> [<0.48.0>,hii]
+
+
+(vamsi1@local)12> Pid1! hii.
+hii
+
+
+(vamsi2@local)5> [<0.48.0>,hii]
+
+%I am adding one more clause to receive loop here switch is an atom what i make here is tail recursive to the 
+    %   loop function but if you see that i specified module name as well ,what this actually means if i make a %call to function
+ %       sepecified nodule name as well ,I tell erlang to use latest version of the module ,here we force to %specify use the latest beam 
+
+switch->
+    test2:loop();
+
+
+and now send message to Pid1! switch 
+%I tell erlang to use latest version of the module ,here we force to specify use the latest beam 
+
+and afert that
+(vamsi1@local)13> Pid1! switch.
+switch
+
+(vamsi1@local)15> Pid1! hii.   
+hii
+see the below output in other node 
+
+[<0.48.0>,hello]
 
 
 
